@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import {
+  getAllCategories
+} from '../../actions';
 
 class Categories extends Component {
+  componentDidMount() {
+    this.props.getAllCategories();
+  }
   render() {
+    const { categories } = this.props;
     return (
       <div className="container mt-5">
         <div className="row justify-content-around">
           <button type="button" className="btn btn-secondary">All</button>
-          <button type="button" className="btn btn-secondary">React</button>
-          <button type="button" className="btn btn-secondary">Redux</button>
-          <button type="button" className="btn btn-secondary">Udacity</button>
+          {
+            categories.map(category => (
+              <button key={category.name} type="button" className="btn btn-secondary">{category.name}</button>
+            ))
+          }
           <div className="dropdown">
             <button className="btn bg-info text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Oldest
@@ -24,4 +35,12 @@ class Categories extends Component {
   }
 }
 
-export default Categories;
+const mapStateToProps = state => ({
+  categories: state.categories
+});
+
+const mapDispatchToProps = {
+  getAllCategories
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);
