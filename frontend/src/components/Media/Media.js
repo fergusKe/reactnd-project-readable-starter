@@ -7,7 +7,7 @@ class Media extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="media border p-3">
+          <div className="media border p-3 mb-3">
             <img className="rounded-circle mr-3" src="https://fakeimg.pl/64x64/?text=avatar" alt="" />
             <div className="media-body">
               <h5 className="mt-0">Media heading</h5>

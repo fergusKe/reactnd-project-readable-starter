@@ -22,11 +22,11 @@ class Categories extends Component {
           }
           <div className="dropdown">
             <button className="btn bg-info text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Oldest
+              Newest
             </button>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a className="dropdown-item" href="#">Oldest</a>
               <a className="dropdown-item" href="#">Newest</a>
+              <a className="dropdown-item" href="#">Oldest</a>
             </div>
           </div>
         </div>
