@@ -14,10 +14,14 @@ class Home extends Component {
     return (
       <div id="app">
         <Header />
-        <Categories />
-        <div className="mt-5" />
-        <Media />
-        <Comments />
+        <div className="container">
+          <Categories />
+          <div className="mt-5" />
+          <Media />
+          <Comments />
+          <Media />
+          <Media />
+        </div>
       </div>
     );
   }
