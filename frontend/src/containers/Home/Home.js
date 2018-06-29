@@ -6,6 +6,7 @@ import '../../../node_modules/bootstrap/dist/js/bootstrap.bundle';
 
 import Header from '../../components/Header/Header';
 import Categories from '../../components/Categories/Categories';
+import Media from '../../components/Media/Media';
 
 class Home extends Component {
   render() {
@@ -13,6 +14,8 @@ class Home extends Component {
       <div id="app">
         <Header />
         <Categories />
+        <div className="mt-5" />
+        <Media />
       </div>
     );
   }

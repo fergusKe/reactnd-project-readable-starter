@@ -1,0 +1,8 @@
+.author, .time, .like, .unlike, .comment {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.like, .unlike, .comment {
+  cursor: pointer;
+}
