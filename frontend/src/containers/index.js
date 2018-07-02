@@ -15,6 +15,7 @@ const Main = () => (
   <Router>
     <Switch>
       <Route exact path="/" component={ListPosts} />
+      <Route path="/categories/:name" component={ListPosts} />
       <Route component={NotFound} />
     </Switch>
   </Router>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 
 import {
   getAllCategories
@@ -16,7 +17,9 @@ class Categories extends Component {
         <button type="button" className="btn btn-secondary">All</button>
         {
           categories.map(category => (
-            <button key={category.name} type="button" className="btn btn-secondary">{category.name}</button>
+            <Link key={category.name} to={`/categories/${category.name}`}>
+              <button type="button" className="btn btn-secondary">{category.name}</button>
+            </Link>
           ))
         }
         <div className="dropdown">

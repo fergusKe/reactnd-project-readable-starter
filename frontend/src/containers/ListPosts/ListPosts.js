@@ -11,7 +11,9 @@ class ListPosts extends Component {
     this.props.getAllPosts();
   }
   render() {
-    const { posts } = this.props;
+    const { posts, match, location } = this.props;
+    console.log('match = ', match);
+    console.log('location = ', location);
     return (
       <Layout>
         <div className="container">
