@@ -1,37 +1,40 @@
 import React, { Component } from 'react';
 
+import { getFormatDate } from '../../utils/helps';
 import './Media.scss';
 
 class Media extends Component {
   render() {
+    const { post } = this.props;
     return (
       <div className="row">
-        <div className="media border p-3 mb-3">
+        <div className="media border w-100 p-3 mb-3">
           <img className="rounded-circle mr-3" src="https://fakeimg.pl/64x64/?text=avatar" alt="" />
           <div className="media-body">
-            <h5 className="mt-0">Media heading</h5>
+            <h5 className="mt-0">{post.title}</h5>
             <div className="author mr-2">
               <i className="fas fa-user mr-1" />
-              xxx
+              {post.author}
             </div>
             <div className="time">
               <i className="fas fa-clock mr-1" />
-              2018-06-27 10:22
+              {getFormatDate(post.timestamp)}
             </div>
-            <div className="content">
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+            <div className="content mt-2 mb-2">
+              {post.body}
             </div>
-            <div className="like mr-2">
-              <i className="fas fa-thumbs-up" />
-              <span className="badge">1</span>
-            </div>
-            <div className="unlike mr-2">
-              <i className="fas fa-thumbs-down" />
-              <span className="badge">2</span>
+            <div className="vote mr-2">
+              <div className="like mr-2">
+                <i className="fas fa-thumbs-up" />
+              </div>
+              <div className="unlike">
+                <i className="fas fa-thumbs-down" />
+              </div>
+              <span className="badge">{post.voteScore}</span>
             </div>
             <div className="comment">
               <i className="fas fa-comment" />
-              <span className="badge">3</span>
+              <span className="badge">{post.commentCount}</span>
             </div>
           </div>
         </div>
