@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import { getFormatDate } from '../../utils/helps';
-import './Media.scss';
+import './PostItem.scss';
 
-class Media extends Component {
+class PostItem extends Component {
   render() {
     const { post } = this.props;
     return (
@@ -43,4 +43,4 @@ class Media extends Component {
   }
 }
 
-export default Media;
+export default PostItem;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Layout from '../../components/Layout/Layout';
 import Categories from '../../components/Categories/Categories';
-import Media from '../../components/Media/Media';
+import PostItem from '../../components/PostItem/PostItem';
 import { getAllPosts } from '../../actions';
 
 class ListPosts extends Component {
@@ -12,7 +12,6 @@ class ListPosts extends Component {
   }
   render() {
     const { posts } = this.props;
-    console.log('posts = ', posts);
     return (
       <Layout>
         <div className="container">
@@ -20,7 +19,7 @@ class ListPosts extends Component {
           <div className="mt-5" />
           {
             posts.map(post => (
-              <Media key={post.id} post={post} />
+              <PostItem key={post.id} post={post} />
             ))
           }
         </div>
