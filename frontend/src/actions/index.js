@@ -2,12 +2,14 @@ import {
   INCREASE,
   DECREASE,
   GET_ALL_CATEGORIES,
-  GET_ALL_POSTS
+  GET_ALL_POSTS,
+  GET_CATEGORY_POSTS
 } from '../actionTypes';
 
 import {
   getAllCategories as getAllCategoriesApi,
-  getAllPosts as getAllPostsApi
+  getAllPosts as getAllPostsApi,
+  getCategoryPosts as getCategoryPostsApi
 } from '../utils/apis';
 
 export const increate = () => (dispatch) => {
@@ -36,6 +38,15 @@ export const getAllPosts = () => async (dispatch) => {
 
   dispatch({
     type: GET_ALL_POSTS,
+    payload: posts
+  });
+};
+
+export const getCategoryPosts = category => async (dispatch) => {
+  const posts = await getCategoryPostsApi(category);
+
+  dispatch({
+    type: GET_CATEGORY_POSTS,
     payload: posts
   });
 };

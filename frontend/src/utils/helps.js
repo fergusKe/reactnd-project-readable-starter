@@ -74,3 +74,23 @@ export const getFormatDate = utc => {
   minute = minute.length === 1 ? "0" + minute : minute;
   return `${year}-${month}-${day} ${hour}:${minute}`;
 }
+
+export const sortBy = (data, value) => {
+  console.log('data = ', data);
+  console.log('value = ', value);
+  data.sort((a, b) => {
+    switch (value) {
+      case 'newest':
+        return a.timestamp < b.timestamp ? 1 : -1;
+      case 'oldest':
+        return a.timestamp > b.timestamp ? 1 : -1;
+      case 'popular':
+        return a.voteScore < b.voteScore ? 1 : -1;
+      case "unpopular":
+        return a.voteScore > b.voteScore ? 1 : -1;
+      default:
+        return a.timestamp < b.timestamp ? 1 : -1;
+    }
+  })
+  return data
+}

@@ -4,23 +4,27 @@ import { connect } from 'react-redux';
 import Layout from '../../components/Layout/Layout';
 import Categories from '../../components/Categories/Categories';
 import PostItem from '../../components/PostItem/PostItem';
-import { getAllPosts } from '../../actions';
+import { getAllPosts, getCategoryPosts } from '../../actions';
+
+import { getPosts } from '../../selectors';
 
 class ListPosts extends Component {
   componentDidMount() {
     this.props.getAllPosts();
+    // console.log('this.props.match.params.name = ', this.props.match.params.name);
+    // this.props.getCategoryPosts(this.props.match.params.name);
   }
   render() {
     const { posts, match, location } = this.props;
-    console.log('match = ', match);
-    console.log('location = ', location);
+    // console.log('ListPost match = ', match);
+    // console.log('location = ', location);
     return (
       <Layout>
         <div className="container">
           <Categories />
           <div className="mt-5" />
           {
-            posts.map(post => (
+            posts && posts.map(post => (
               <PostItem key={post.id} post={post} />
             ))
           }
@@ -30,12 +34,14 @@ class ListPosts extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  posts: state.posts
+const mapStateToProps = (state, props) => ({
+  posts: getPosts(state, props)
+  // posts: state.posts
 });
 
 const mapDispatchToProps = {
-  getAllPosts
+  getAllPosts,
+  // getCategoryPosts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListPosts);
