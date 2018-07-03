@@ -12,6 +12,8 @@ import Main from './containers';
 import './stylesheets/common.scss';
 import './stylesheets/index.scss';
 
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle';
+
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
 const render = () => {

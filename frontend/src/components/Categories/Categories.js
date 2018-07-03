@@ -14,7 +14,9 @@ class Categories extends Component {
     const { categories } = this.props;
     return (
       <div className="row justify-content-around mt-5">
-        <button type="button" className="btn btn-secondary">All</button>
+        <Link to="/categories/all">
+          <button type="button" className="btn btn-secondary">All</button>
+        </Link>
         {
           categories.map(category => (
             <Link key={category.name} to={`/categories/${category.name}`}>
