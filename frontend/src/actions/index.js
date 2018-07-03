@@ -3,7 +3,8 @@ import {
   DECREASE,
   GET_ALL_CATEGORIES,
   GET_ALL_POSTS,
-  GET_CATEGORY_POSTS
+  GET_CATEGORY_POSTS,
+  SET_SORT_TYPE
 } from '../actionTypes';
 
 import {
@@ -48,5 +49,12 @@ export const getCategoryPosts = category => async (dispatch) => {
   dispatch({
     type: GET_CATEGORY_POSTS,
     payload: posts
+  });
+};
+
+export const setSortType = sortType => (dispatch) => {
+  dispatch({
+    type: SET_SORT_TYPE,
+    payload: sortType
   });
 };

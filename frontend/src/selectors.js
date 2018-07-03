@@ -1,8 +1,6 @@
 import { sortBy } from './utils/helps';
 
 export const getPosts = (state, props) => {
-  console.log('getPosts state = ', state);
-  console.log('getPosts props = ', props);
   if (!state.posts.length) {
     return state.posts;
   }

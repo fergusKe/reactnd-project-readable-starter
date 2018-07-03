@@ -18,15 +18,17 @@ class ListPosts extends Component {
     const { posts, match, location } = this.props;
     // console.log('ListPost match = ', match);
     // console.log('location = ', location);
+    console.log('posts = ', posts);
     return (
       <Layout>
         <div className="container">
           <Categories />
           <div className="mt-5" />
           {
-            posts && posts.map(post => (
+            posts.length ? posts.map(post => (
               <PostItem key={post.id} post={post} />
             ))
+            : 'No post!'
           }
         </div>
       </Layout>

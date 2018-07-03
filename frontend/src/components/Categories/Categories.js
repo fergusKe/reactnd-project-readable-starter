@@ -3,15 +3,23 @@ import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 
 import {
-  getAllCategories
+  getAllCategories,
+  setSortType
 } from '../../actions';
 
 class Categories extends Component {
+  state = {
+    sortArr: ['Newest', 'Oldest', 'Popular', 'Unpopular']
+  }
   componentDidMount() {
     this.props.getAllCategories();
   }
+  handleSortType = (item) => {
+    this.props.setSortType(item);
+  }
   render() {
-    const { categories } = this.props;
+    const { categories, sortType } = this.props;
+    const { sortArr } = this.state;
     return (
       <div className="row justify-content-around mt-5">
         <Link to="/categories/all">
@@ -26,11 +34,21 @@ class Categories extends Component {
         }
         <div className="dropdown">
           <button className="btn bg-info text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Newest
+            {sortType}
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a className="dropdown-item" href="#">Newest</a>
-            <a className="dropdown-item" href="#">Oldest</a>
+            {
+              sortArr.map(item => (
+                <a
+                  key={item}
+                  className="dropdown-item"
+                  href="#"
+                  onClick={() => this.handleSortType(item)}
+                >
+                  {item}
+                </a>
+              ))
+            }
           </div>
         </div>
       </div>
@@ -39,11 +57,13 @@ class Categories extends Component {
 }
 
 const mapStateToProps = state => ({
-  categories: state.categories
+  categories: state.categories,
+  sortType: state.sortType
 });
 
 const mapDispatchToProps = {
-  getAllCategories
+  getAllCategories,
+  setSortType
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);
