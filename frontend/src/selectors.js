@@ -1,18 +1,15 @@
 import { sortBy } from './utils/helps';
 
 export const getPosts = (state, props) => {
-  if (!state.posts.length) {
-    return state.posts;
+  const sortType = state.sortType;
+  let posts = [...state.posts];
+
+  if (props.match.url !== '/' && props.match.url !== '/categories/all') {
+    if (posts.length > 0) {
+      const category = props.match.params.name;
+      posts = posts.filter(post => post.category === category);
+    }
   }
-  if (props.match.url === '/' || props.match.url === '/categories/all') {
-    return state.posts;
-  }
 
-  const category = props.match.params.name;
-  const posts = state.posts.filter(post => post.category === category);
-
-  // console.log('posts = ', posts);
-  // posts = sortBy(posts, 'newest');
-
-  return posts;
+  return sortBy(posts, sortType.toLowerCase());
 };

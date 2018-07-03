@@ -14,7 +14,8 @@ class Categories extends Component {
   componentDidMount() {
     this.props.getAllCategories();
   }
-  handleSortType = (item) => {
+  handleSortType = (e, item) => {
+    e.preventDefault();
     this.props.setSortType(item);
   }
   render() {
@@ -43,7 +44,7 @@ class Categories extends Component {
                   key={item}
                   className="dropdown-item"
                   href="#"
-                  onClick={() => this.handleSortType(item)}
+                  onClick={e => this.handleSortType(e, item)}
                 >
                   {item}
                 </a>

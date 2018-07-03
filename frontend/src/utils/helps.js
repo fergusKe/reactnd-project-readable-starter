@@ -76,8 +76,6 @@ export const getFormatDate = utc => {
 }
 
 export const sortBy = (data, value) => {
-  console.log('data = ', data);
-  console.log('value = ', value);
   data.sort((a, b) => {
     switch (value) {
       case 'newest':
@@ -92,5 +90,6 @@ export const sortBy = (data, value) => {
         return a.timestamp < b.timestamp ? 1 : -1;
     }
   })
+
   return data
 }

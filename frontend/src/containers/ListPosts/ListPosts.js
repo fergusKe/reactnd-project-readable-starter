@@ -11,9 +11,11 @@ import { getPosts } from '../../selectors';
 class ListPosts extends Component {
   componentDidMount() {
     this.props.getAllPosts();
+    console.log('componentDidMount');
     // console.log('this.props.match.params.name = ', this.props.match.params.name);
     // this.props.getCategoryPosts(this.props.match.params.name);
   }
+
   render() {
     const { posts, match, location } = this.props;
     // console.log('ListPost match = ', match);
