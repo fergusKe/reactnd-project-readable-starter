@@ -4,13 +4,15 @@ import {
   GET_ALL_CATEGORIES,
   GET_ALL_POSTS,
   GET_CATEGORY_POSTS,
-  SET_SORT_TYPE
+  SET_SORT_TYPE,
+  DELETE_POST
 } from '../actionTypes';
 
 import {
   getAllCategories as getAllCategoriesApi,
   getAllPosts as getAllPostsApi,
-  getCategoryPosts as getCategoryPostsApi
+  getCategoryPosts as getCategoryPostsApi,
+  deletePost as deletePostApi
 } from '../utils/apis';
 
 export const increate = () => (dispatch) => {
@@ -56,5 +58,12 @@ export const setSortType = sortType => (dispatch) => {
   dispatch({
     type: SET_SORT_TYPE,
     payload: sortType
+  });
+};
+
+export const deletePost = id => (dispatch) => {
+  dispatch({
+    type: DELETE_POST,
+    payload: id
   });
 };
