@@ -4,13 +4,15 @@ import {
   GET_ALL_CATEGORIES,
   GET_ALL_POSTS,
   GET_CATEGORY_POSTS,
-  SET_SORT_TYPE
+  SET_SORT_TYPE,
+  ADD_POST
 } from '../actionTypes';
 
 import {
   getAllCategories as getAllCategoriesApi,
   getAllPosts as getAllPostsApi,
-  getCategoryPosts as getCategoryPostsApi
+  getCategoryPosts as getCategoryPostsApi,
+  addPost as addPostApi
 } from '../utils/apis';
 
 export const increate = () => (dispatch) => {
@@ -56,5 +58,14 @@ export const setSortType = sortType => (dispatch) => {
   dispatch({
     type: SET_SORT_TYPE,
     payload: sortType
+  });
+};
+
+export const addPost = post => async (dispatch) => {
+  await addPostApi(post);
+
+  dispatch({
+    type: ADD_POST,
+    payload: post
   });
 };

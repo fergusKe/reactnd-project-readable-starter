@@ -6,7 +6,7 @@ export const getPosts = (state, props) => {
 
   if (props.match.url !== '/' && props.match.url !== '/categories/all') {
     if (posts.length > 0) {
-      const category = props.match.params.name;
+      const category = props.match.params.category;
       posts = posts.filter(post => post.category === category);
     }
   }

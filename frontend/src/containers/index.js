@@ -5,6 +5,7 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 // import Home from '../containers/Home/Home';
 import ListPosts from '../containers/ListPosts/ListPosts';
+import newPostForm from '../components/newPostForm/newPostForm';
 import NotFound from '../containers/NotFound/NotFound';
 
 // @import 'bootstrap/scss/_functions.scss';
@@ -15,7 +16,8 @@ const Main = () => (
   <Router>
     <Switch>
       <Route exact path="/" component={ListPosts} />
-      <Route path="/categories/:name" component={ListPosts} />
+      <Route path="/categories/:category" component={ListPosts} />
+      <Route path="/posts/new" component={newPostForm} />
       <Route component={NotFound} />
     </Switch>
   </Router>
