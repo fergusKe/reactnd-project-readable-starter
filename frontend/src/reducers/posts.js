@@ -1,7 +1,8 @@
 import {
   GET_ALL_POSTS,
   GET_CATEGORY_POSTS,
-  ADD_POST
+  ADD_POST,
+  DELETE_POST
 } from '../actionTypes';
 
 const initialState = [];
@@ -9,13 +10,17 @@ const initialState = [];
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_ALL_POSTS:
-      console.log('posts = ', payload);
-      return payload;
+      return [...payload];
     case GET_CATEGORY_POSTS:
-      console.log('posts = ', payload);
-      return payload;
+      return [...payload];
     case ADD_POST:
       return {payload, ...state};
+    case DELETE_POST: {
+      const posts = state.filter(post => (
+        post.id !== payload
+      ));
+      return [...posts];
+    }
     default:
       return state;
   }

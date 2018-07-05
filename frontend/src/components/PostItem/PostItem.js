@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { getFormatDate } from '../../utils/helps';
 import './PostItem.scss';
 
+import { deletePost } from '../../actions';
+
 class PostItem extends Component {
+  handleDelete = (id) => {
+    this.props.deletePost(id);
+  }
+
   render() {
     const { post } = this.props;
     return (
@@ -36,6 +43,16 @@ class PostItem extends Component {
               <i className="fas fa-comment" />
               <span className="badge">{post.commentCount}</span>
             </div>
+            <div className="row justify-content-end pr-3">
+              <button type="button" className="btn btn-outline-success">Edit</button>
+              <button
+                type="button"
+                className="btn btn-outline-danger ml-2"
+                onClick={() => this.handleDelete(post.id)}
+              >
+                Delete
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -43,4 +60,9 @@ class PostItem extends Component {
   }
 }
 
-export default PostItem;
+const mapDispatchToProps = {
+  deletePost
+};
+
+export default connect(null, mapDispatchToProps)(PostItem);
+

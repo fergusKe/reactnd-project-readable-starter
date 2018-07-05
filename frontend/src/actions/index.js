@@ -5,14 +5,16 @@ import {
   GET_ALL_POSTS,
   GET_CATEGORY_POSTS,
   SET_SORT_TYPE,
-  ADD_POST
+  ADD_POST,
+  DELETE_POST
 } from '../actionTypes';
 
 import {
   getAllCategories as getAllCategoriesApi,
   getAllPosts as getAllPostsApi,
   getCategoryPosts as getCategoryPostsApi,
-  addPost as addPostApi
+  addPost as addPostApi,
+  deletePost as deletePostApi
 } from '../utils/apis';
 
 export const increate = () => (dispatch) => {
@@ -67,5 +69,14 @@ export const addPost = post => async (dispatch) => {
   dispatch({
     type: ADD_POST,
     payload: post
+  });
+};
+
+export const deletePost = id => async (dispatch) => {
+  await deletePostApi(id);
+
+  dispatch({
+    type: DELETE_POST,
+    payload: id
   });
 };
