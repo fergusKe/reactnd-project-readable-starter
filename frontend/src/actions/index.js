@@ -61,7 +61,9 @@ export const setSortType = sortType => (dispatch) => {
   });
 };
 
-export const deletePost = id => (dispatch) => {
+export const deletePost = id => async (dispatch) => {
+  await deletePostApi(id);
+
   dispatch({
     type: DELETE_POST,
     payload: id

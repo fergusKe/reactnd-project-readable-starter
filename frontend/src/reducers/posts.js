@@ -16,7 +16,7 @@ export default (state = initialState, { type, payload }) => {
       const posts = state.filter(post => (
         post.id !== payload
       ));
-      return posts;
+      return [...posts];
     }
     default:
       return state;
