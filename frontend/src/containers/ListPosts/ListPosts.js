@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Layout from '../../components/Layout/Layout';
 import Categories from '../../components/Categories/Categories';
 import PostItem from '../../components/PostItem/PostItem';
-import { getAllPosts, getCategoryPosts } from '../../actions';
+import { getAllPosts } from '../../actions';
 
 import { getPosts } from '../../selectors';
 
@@ -24,9 +24,11 @@ class ListPosts extends Component {
         <div className="container">
           <Categories />
           <div className="mt-5" />
-          <Link to="/posts/new">
-            <button type="button" className="btn btn-outline-info mb-3">Add Post</button>
-          </Link>
+          <div className="row">
+            <Link to="/posts/new">
+              <button type="button" className="btn btn-outline-info mb-3">Add Post</button>
+            </Link>
+          </div>
           {
             posts.length ? posts.map(post => (
               <PostItem key={post.id} post={post} />

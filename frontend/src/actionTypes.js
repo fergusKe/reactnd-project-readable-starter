@@ -6,3 +6,5 @@ export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS';
 export const SET_SORT_TYPE = 'SET_SORT_TYPE';
 export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
+export const UP_VOTE_POST = 'UP_VOTE_POST';
+export const DOWN_VOTE_POST = 'DOWN_VOTE_POST';
