@@ -9,34 +9,19 @@ import {
   addPost
 } from '../../actions';
 
-class newPostForm extends Component {
+class NewPostForm extends Component {
   formRef = React.createRef();
-
   state = {
-    category: 'react',
+    category: '',
     author: '',
     title: '',
     content: ''
   }
+
   componentDidMount() {
     this.props.getAllCategories();
-    this.formListener();
   }
-  formListener = () => {
-    // window.addEventListener('load', () => {
-    //   const forms = document.getElementsByClassName('needs-validation');
-    //   // Loop over them and prevent submission
-    //   Array.prototype.filter.call(forms, (form) => {
-    //     form.addEventListener('submit', (event) => {
-    //       if (form.checkValidity() === false) {
-    //         event.preventDefault();
-    //         event.stopPropagation();
-    //       }
-    //       form.classList.add('was-validated');
-    //     }, false);
-    //   });
-    // }, false);
-  }
+
   handleChange = (e) => {
     const name = e.target.name;
 
@@ -58,6 +43,7 @@ class newPostForm extends Component {
       });
     }
   }
+
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -66,11 +52,12 @@ class newPostForm extends Component {
       category: this.state.category,
       author: this.state.author,
       title: this.state.title,
-      content: this.state.content,
+      body: this.state.content,
       timestamp: Date.now(),
-      id: Date.now()
+      id: String(Date.now()),
+      commentCount: 0,
+      voteScore: 0
     };
-    console.log('post = ', post);
 
     if (form.checkValidity() === false) {
       e.stopPropagation();
@@ -186,4 +173,4 @@ const mapDispatchToProps = {
   addPost
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(newPostForm);
+export default connect(mapStateToProps, mapDispatchToProps)(NewPostForm);

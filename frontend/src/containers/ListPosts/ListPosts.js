@@ -6,7 +6,6 @@ import Layout from '../../components/Layout/Layout';
 import Categories from '../../components/Categories/Categories';
 import PostItem from '../../components/PostItem/PostItem';
 import { getAllPosts } from '../../actions';
-
 import { getPosts } from '../../selectors';
 
 class ListPosts extends Component {
@@ -15,10 +14,9 @@ class ListPosts extends Component {
   }
 
   render() {
-    const { posts, match, location } = this.props;
-    // console.log('ListPost match = ', match);
-    // console.log('location = ', location);
+    const { posts } = this.props;
     console.log('posts = ', posts);
+
     return (
       <Layout>
         <div className="container">
@@ -30,7 +28,7 @@ class ListPosts extends Component {
             </Link>
           </div>
           {
-            posts.length ? posts.map(post => (
+            posts && posts.length ? posts.map(post => (
               <PostItem key={post.id} post={post} />
             ))
             : 'No post!'

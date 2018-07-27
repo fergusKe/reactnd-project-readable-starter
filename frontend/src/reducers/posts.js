@@ -4,7 +4,8 @@ import {
   ADD_POST,
   DELETE_POST,
   UP_VOTE_POST,
-  DOWN_VOTE_POST
+  DOWN_VOTE_POST,
+  UPDATE_POST
 } from '../actionTypes';
 
 const initialState = [];
@@ -42,6 +43,18 @@ export default (state = initialState, { type, payload }) => {
           return {
             ...p,
             voteScore: p.voteScore - 1
+          };
+        }
+        return p;
+      });
+
+      return post;
+    }
+    case UPDATE_POST: {
+      const post = state.map((p) => {
+        if (p.id === payload.id) {
+          return {
+            ...payload.post
           };
         }
         return p;

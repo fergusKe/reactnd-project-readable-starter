@@ -8,7 +8,8 @@ import {
   ADD_POST,
   DELETE_POST,
   UP_VOTE_POST,
-  DOWN_VOTE_POST
+  DOWN_VOTE_POST,
+  UPDATE_POST
 } from '../actionTypes';
 
 import {
@@ -17,7 +18,8 @@ import {
   getCategoryPosts as getCategoryPostsApi,
   addPost as addPostApi,
   deletePost as deletePostApi,
-  votePost as votePostApi
+  votePost as votePostApi,
+  updatePost as updatePostApi
 } from '../utils/apis';
 
 export const increate = () => (dispatch) => {
@@ -99,5 +101,14 @@ export const downVotePost = id => async (dispatch) => {
   dispatch({
     type: DOWN_VOTE_POST,
     payload: id
+  });
+};
+
+export const updatePost = (post, id) => async (dispatch) => {
+  await updatePostApi(post, id);
+
+  dispatch({
+    type: UPDATE_POST,
+    payload: {post, id}
   });
 };

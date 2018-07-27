@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 
 import { getFormatDate } from '../../utils/helps';
 import './PostItem.scss';
@@ -7,16 +8,14 @@ import './PostItem.scss';
 import { deletePost, upVotePost, downVotePost } from '../../actions';
 
 class PostItem extends Component {
-  handleDelete = (id) => {
-    this.props.deletePost(id);
-  }
-
   render() {
     const {
       post,
       upVotePostApi,
-      downVotePostApi
+      downVotePostApi,
+      deletePostApi
     } = this.props;
+
     return (
       <div className="row">
         <div className="media border w-100 p-3 mb-3">
@@ -54,11 +53,10 @@ class PostItem extends Component {
               <span className="badge">{post.commentCount}</span>
             </div>
             <div className="row justify-content-end pr-3">
-              <button type="button" className="btn btn-outline-success">Edit</button>
               <button
                 type="button"
                 className="btn btn-outline-danger ml-2"
-                onClick={() => this.handleDelete(post.id)}
+                onClick={() => deletePostApi(post.id)}
               >
                 Delete
               </button>
@@ -71,7 +69,7 @@ class PostItem extends Component {
 }
 
 const mapDispatchToProps = {
-  deletePost,
+  deletePostApi: deletePost,
   upVotePostApi: upVotePost,
   downVotePostApi: downVotePost
 };
