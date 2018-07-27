@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 
@@ -8,9 +8,10 @@ import PostItem from '../../components/PostItem/PostItem';
 import { getAllPosts } from '../../actions';
 import { getPosts } from '../../selectors';
 
-class ListPosts extends Component {
+class ListPosts extends PureComponent {
   componentDidMount() {
     this.props.getAllPosts();
+    console.log('getAllPosts');
   }
 
   render() {

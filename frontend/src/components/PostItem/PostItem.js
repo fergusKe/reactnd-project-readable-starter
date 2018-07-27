@@ -53,6 +53,9 @@ class PostItem extends Component {
               <span className="badge">{post.commentCount}</span>
             </div>
             <div className="row justify-content-end pr-3">
+              <Link to={`/posts/${post.id}/edit`}>
+                <button type="button" className="btn btn-outline-success">Edit</button>
+              </Link>
               <button
                 type="button"
                 className="btn btn-outline-danger ml-2"

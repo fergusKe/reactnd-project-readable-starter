@@ -6,20 +6,39 @@ import Layout from '../../components/Layout/Layout';
 
 import {
   getAllCategories,
-  addPost
+  getAllPosts,
+  updatePost
 } from '../../actions';
 
-class NewPostForm extends Component {
+class EditPostForm extends Component {
   formRef = React.createRef();
   state = {
-    category: 'react',
-    author: '',
+    post: {},
+    category: '',
     title: '',
-    content: ''
+    author: '',
+    body: ''
   }
 
   componentDidMount() {
+    console.log('QQQ');
+
     this.props.getAllCategories();
+    this.props.getAllPosts().then(() => {
+      const { posts } = this.props;
+      const { id } = this.props.match.params;
+      const post = posts.filter(p => (
+        p.id === id
+      ))[0];
+
+      this.setState({
+        post,
+        category: post.category,
+        title: post.title,
+        author: post.author,
+        body: post.body
+      });
+    });
   }
 
   handleChange = (e) => {
@@ -29,17 +48,17 @@ class NewPostForm extends Component {
       this.setState({
         category: e.target.value
       });
-    } else if (name === 'author') {
-      this.setState({
-        author: e.target.value
-      });
     } else if (name === 'title') {
       this.setState({
         title: e.target.value
       });
-    } else if (name === 'content') {
+    } else if (name === 'author') {
       this.setState({
-        content: e.target.value
+        author: e.target.value
+      });
+    } else if (name === 'body') {
+      this.setState({
+        body: e.target.value
       });
     }
   }
@@ -47,30 +66,35 @@ class NewPostForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
+    const { id } = this.props.match.params;
     const form = this.formRef.current;
     const post = {
+      ...this.state.post,
       category: this.state.category,
       author: this.state.author,
       title: this.state.title,
-      body: this.state.content,
-      timestamp: Date.now(),
-      id: String(Date.now()),
-      commentCount: 0,
-      voteScore: 0
+      body: this.state.body,
+      timestamp: Date.now()
     };
 
     if (form.checkValidity() === false) {
       e.stopPropagation();
       form.classList.add('was-validated');
     } else {
-      this.props.addPost(post);
+      this.props.updatePost(post, id);
       this.props.history.push('/');
     }
   }
 
   render() {
     const { categories } = this.props;
-    const { author, title, content } = this.state;
+    const {
+      category,
+      title,
+      author,
+      body
+    } = this.state;
+    console.log('state = ', this.state);
 
     return (
       <Layout>
@@ -86,35 +110,20 @@ class NewPostForm extends Component {
                 className="form-control"
                 id="exampleFormControlSelect1"
                 name="category"
+                value={category}
                 onChange={this.handleChange}
               >
                 {
-                  categories.map(category => (
+                  categories.map(c => (
                     <option
-                      key={category.name}
-                      value={category.name}
+                      key={c.name}
+                      value={c.name}
                     >
-                      {category.name}
+                      {c.name}
                     </option>
                   ))
                 }
               </select>
-            </div>
-            <div className="form-group">
-              <label htmlFor="author">author</label>
-              <input
-                type="text"
-                className="form-control"
-                id="author"
-                placeholder=""
-                name="author"
-                value={author}
-                onChange={this.handleChange}
-                required
-              />
-              <div className="invalid-feedback">
-                Please enter author.
-              </div>
             </div>
             <div className="form-group">
               <label htmlFor="title">title</label>
@@ -133,13 +142,29 @@ class NewPostForm extends Component {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="content">content</label>
+              <label htmlFor="author">author</label>
+              <input
+                type="text"
+                className="form-control"
+                id="author"
+                placeholder=""
+                name="author"
+                value={author}
+                onChange={this.handleChange}
+                required
+              />
+              <div className="invalid-feedback">
+                Please enter author.
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="body">content</label>
               <textarea
                 className="form-control"
-                id="content"
+                id="body"
                 rows="3"
-                name="content"
-                value={content}
+                name="body"
+                value={body}
                 onChange={this.handleChange}
                 required
               />
@@ -165,12 +190,14 @@ class NewPostForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  categories: state.categories
+  categories: state.categories,
+  posts: state.posts
 });
 
 const mapDispatchToProps = {
   getAllCategories,
-  addPost
+  getAllPosts,
+  updatePost
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewPostForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EditPostForm);
