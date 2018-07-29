@@ -23,12 +23,12 @@ class Categories extends Component {
     const { sortArr } = this.state;
     return (
       <div className="row justify-content-around mt-5">
-        <Link to="/categories/all">
+        <Link to="/posts/all">
           <button type="button" className="btn btn-secondary">All</button>
         </Link>
         {
           categories.map(category => (
-            <Link key={category.name} to={`/categories/${category.name}`}>
+            <Link key={category.name} to={`/posts/${category.name}`}>
               <button type="button" className="btn btn-secondary">{category.name}</button>
             </Link>
           ))

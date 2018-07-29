@@ -11,7 +11,6 @@ import { getPosts } from '../../selectors';
 class ListPosts extends PureComponent {
   componentDidMount() {
     this.props.getAllPosts();
-    console.log('getAllPosts');
   }
 
   render() {
