@@ -63,8 +63,9 @@ class NewPostForm extends Component {
       e.stopPropagation();
       form.classList.add('was-validated');
     } else {
-      this.props.addPost(post);
-      this.props.history.push('/');
+      this.props.addPost(post).then(() => {
+        this.props.history.push('/');
+      });
     }
   }
 

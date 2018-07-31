@@ -21,8 +21,6 @@ class EditPostForm extends Component {
   }
 
   componentDidMount() {
-    console.log('QQQ');
-
     this.props.getAllCategories();
     this.props.getAllPosts().then(() => {
       const { posts } = this.props;
@@ -81,8 +79,9 @@ class EditPostForm extends Component {
       e.stopPropagation();
       form.classList.add('was-validated');
     } else {
-      this.props.updatePost(post, id);
-      this.props.history.push('/');
+      this.props.updatePost(post, id).then(() => {
+        this.props.history.push('/');
+      });
     }
   }
 
