@@ -5,8 +5,8 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 // import Home from '../containers/Home/Home';
 import ListPosts from '../containers/ListPosts/ListPosts';
-import NewPostForm from '../components/NewPostForm/NewPostForm';
-import EditPostForm from '../components/EditPostForm/EditPostForm';
+import NewPostForm from '../containers/NewPostForm/NewPostForm';
+import EditPostForm from '../containers/EditPostForm/EditPostForm';
 import PostDetail from '../containers/PostDetail/PostDetail';
 import NotFound from '../containers/NotFound/NotFound';
 
@@ -18,10 +18,10 @@ const Main = () => (
   <Router>
     <Switch>
       <Route exact path="/" component={ListPosts} />
-      <Route path="/posts/:category" component={ListPosts} />
-      <Route path="/posts/new" component={NewPostForm} />
-      <Route path="/posts/:id/edit" component={EditPostForm} />
-      <Route path="/:category/:post_id" component={PostDetail} />
+      <Route exact path="/posts/new" component={NewPostForm} />
+      <Route exact path="/posts/:category" component={ListPosts} />
+      <Route exact path="/posts/:id/edit" component={EditPostForm} />
+      <Route exact path="/:category/:post_id" component={PostDetail} />
       <Route component={NotFound} />
     </Switch>
   </Router>
