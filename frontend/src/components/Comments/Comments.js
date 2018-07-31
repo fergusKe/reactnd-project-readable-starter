@@ -5,7 +5,7 @@ import './Comments.scss';
 class Comments extends Component {
   render() {
     return (
-      <div className="row mt-3">
+      <div className="row mt-3 comments">
         <h1 className="w-100">Comments</h1>
         <form className="w-100">
           <div className="form-group mt-3">

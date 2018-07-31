@@ -17,11 +17,15 @@ class PostItem extends Component {
     } = this.props;
 
     return (
-      <div className="row">
+      <div className="row post-item">
         <div className="media border w-100 p-3 mb-3">
           <img className="rounded-circle mr-3" src="https://fakeimg.pl/64x64/?text=avatar" alt="" />
           <div className="media-body">
-            <h5 className="mt-0">{post.title}</h5>
+            <h5 className="mt-0">
+              <Link to={`/${post.category}/${post.id}`}>
+                {post.title}
+              </Link>
+            </h5>
             <div className="author mr-2">
               <i className="fas fa-user mr-1" />
               {post.author}
@@ -49,8 +53,10 @@ class PostItem extends Component {
               <span className="badge">{post.voteScore}</span>
             </div>
             <div className="comment">
-              <i className="fas fa-comment" />
-              <span className="badge">{post.commentCount}</span>
+              <Link to={`/${post.category}/${post.id}`}>
+                <i className="fas fa-comment" />
+                <span className="badge">{post.commentCount}</span>
+              </Link>
             </div>
             <div className="row justify-content-end pr-3">
               <Link to={`/posts/${post.id}/edit`}>

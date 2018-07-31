@@ -1,8 +1,14 @@
-.author, .time, .like, .unlike, .comment, .vote {
-  display: inline-block;
-  vertical-align: top;
-}
+.post-item {
+  .author, .time, .like, .unlike, .comment, .vote {
+    display: inline-block;
+    vertical-align: top;
+  }
 
-.like, .unlike, .comment {
-  cursor: pointer;
+  .like, .unlike, .comment {
+    cursor: pointer;
+  }
+
+  a {
+    color: #000;
+  }
 }
